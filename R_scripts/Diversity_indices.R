@@ -103,9 +103,11 @@ t_lizards_abund_sum <- as.data.frame(t_lizards_abund_sum)
 # Calculate chao using the ChaoRichness function in iNEXT
 chao_values <- ChaoRichness(t_lizards_abund, datatype = "abundance")
 
-# Extract S_chao/S_total values from the output file
+# Add S_chao/S_total values to the "diversity_indices" dataframe 
 
-lizards_abund_sum$S_total <- chao_values$Estimator
+diversity_indices$S_total <- chao_values$Estimator
+
+
 
 
 
