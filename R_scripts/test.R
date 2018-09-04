@@ -1,20 +1,35 @@
-#Calculating local diversity indices alpha S_pie, species richness (S) and number of individuals (N)
+####################################################################################
+# Author : Leana Gooriah
+# Email : leana_devi.gooriah@idiv.de
+####################################################################################
 
-# Read csv file
+# Description : This script can be used to calculate the different diversity indices 
+# Such as : species richness (S), Effective Number of Species of PIE (S_pie) 
+# at two different scales (alpha and gamma).
 
-lizards_abund <- read_csv("lizards_andamans - abund.csv")
+####################################################################################
 
+# LOAD THE NECESSARY R LIBRARIES
 
-#Load R packages
 library(vegan)
 library(dplyr)
 library(tidyr)
 library(iNEXT)
 library(readr)
 
-# Calculate local diversity indices
+# ----------------------------------------------------------------------------------
+
+# ALPHA DIVERSITY INDICES
+
+# load the raw abundance data
+
+lizards_abund <- read_csv("lizards_andamans - abund.csv")
+
+# Remove "Site" column (since it contains non-integers) 
 
 lizards_abund$Site <- NULL
+
+# Calculate local diversity indices
 
 N <- rowSums(lizards_abund)
 S <- rowSums(lizards_abund>0)
@@ -26,45 +41,57 @@ div_local <- cbind(N,S,PIE, S_pie)
 div_local <- as.data.frame(div_local)
 
 
-#re-load csv to get Site info
+# re-load the raw abundance csv file to get Site info
+
 lizards_abund <- read_csv("lizards_andamans - abund.csv")
 
 div_local$Site <- lizards_abund$Site
 
+# Calculate average diversity values per Site 
+# that is : diversity values averaged across the number of plots or quadrats
+div_alpha <- div_local %>%
+group_by(Site) %>%
+summarise_all(mean)
 
-#Average N per island
-Average_N_island <- div_local$N
+# ----------------------------------------------------------------------------------
 
-###### Calculating alpha Sn values #####
+# GAMMA DIVERSITY INDICES
 
-#Transpose data to fit iNEXT data format requirement
-t_lizards_abund<- t(lizards_abund)
-t_lizards_abund <- as.data.frame(t_lizards_abund)
+# load the raw abundance data
+
+lizards_abund <- read_csv("lizards_andamans - abund.csv")
+
+# Get summed up values of abundance data per site
+
+lizards_abund_sum <- lizards_abund %>%
+group_by(Site) %>%
+summarise_all(sum)
+
+# Remove "Site" column (since it contains non-integers) 
+
+lizards_abund_sum$Site <- NULL
+
+# Calculate gamma diversity indices
+
+N_gamma <- rowSums(lizards_abund_sum)
+S_gamma <- rowSums(lizards_abund_sum>0)
+
+PIE_gamma <- rarefy(lizards_abund_sum, 2) -1
+S_pie_gamma <- 1/(1-PIE)
+
+div_gamma <- cbind(N_gamma,S_gamma,PIE_gamma, S_pie_gamma)
+div_gamma <- as.data.frame(div_gamma)
+
+# get Site info from div_alpha
+
+div_gamma$Site <- div_alpha$Site 
+
+# merge alpha and gamma diversity indices into one dataframe
+
+diversity_indices <- merge(div_alpha, div_gamma, by = "Site")
 
 
-# Get average N values from which corresponding Sn values will be interpolated or extrapolated from local rarefaction curves
-
-m <- c(1,2,3,4,5,6,9,11,13,15,18,27,36)
-
-m
-# Interpolation and extrapolation using iNEXT
-
-inext_data2 <- iNEXT(t_lizards_abund, q = 0, datatype = "abundance", size = m)
-inext_data2
-
-# Extract iNEXT estimates
-
-extrapolated_data2 <- inext_data2$iNextEst
-extrapolated_data2
-ext_dat2 <- do.call("rbind",extrapolated_data2)
-
-#lizards_abund <- read_csv("lizards_andamans - abund.csv")
-
-div_local$a_Sn <- ext_dat2$qD
-
-alpha_lizards <- div_local %>%
-  group_by(Site) %>%
-  summarise_all(mean)
 
 
-write.csv2(alpha_lizards, "/Users/leanagooriah/Downloads/local_lizards.csv")
+
+
