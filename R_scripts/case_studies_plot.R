@@ -1,9 +1,13 @@
-#GGplot of lizards
+# LOAD NECESSARY LIBRARIES
+
 library(ggplot2)
 library(readr)
-setwd("~/Desktop/ISAR ggplot")
+
+# load plot file with encoding to read greek letters
 
 lizards_plot_data <- read.csv("lizards_ggplot.csv", encoding = "UTF-8")
+
+# Define factor levels to set specific shapes and colours to the different levels (alpha, beta and gamma)
 
 lizards_plot_data$L_T_B_x = factor(lizards_plot_data$L_T_B, levels=c('A) Total','B) Local','C) Beta'))
 
