@@ -90,6 +90,23 @@ div_gamma$Site <- div_alpha$Site
 
 diversity_indices <- merge(div_alpha, div_gamma, by = "Site")
 
+# ----------------------------------------------------------------------------------
+
+# CHAO RICHNESS 
+# Calculating S_chao values from summed up abundance data
+# S_chao is referred to as S_total in the manuscript 
+
+# Transpose data to fit iNEXT format
+t_lizards_abund_sum<- t(lizards_abund_sum)
+# Convert into a dataframe
+t_lizards_abund_sum <- as.data.frame(t_lizards_abund_sum)
+# Calculate chao using the ChaoRichness function in iNEXT
+chao_values <- ChaoRichness(t_lizards_abund, datatype = "abundance")
+
+# Extract S_chao/S_total values from the output file
+
+lizards_abund_sum$S_total <- chao_values$Estimator
+
 
 
 
