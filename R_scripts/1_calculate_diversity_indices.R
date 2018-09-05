@@ -22,7 +22,7 @@ library(readr)
 
 # Set path and directories
 
-path1 <- ("~/Desktop/ISAR Case Studies/")
+path1 <- ("~/Desktop/ISAR_DATA/")
 data_path <- paste(path1, "datasets/", sep = "")
 div_path <- paste(path1, "diversity_indices/", sep = "")
 
