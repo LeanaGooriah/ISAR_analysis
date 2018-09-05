@@ -49,6 +49,7 @@ for (i in 1:3){
   print(data_file)
   
   dat1 <- read.csv(data_file, header = TRUE, sep =",")
+  temp <- dat1$Site
   dat1$Site <- NULL
   
   N_local <- rowSums(dat1)
@@ -59,65 +60,66 @@ for (i in 1:3){
   div_local <- cbind(N_local, S_local, PIE_local, S_pie_local)
   div_local <- as.data.frame(div_local)
   
-  dat1 <- read.csv(data_file, header = TRUE, sep =",")
-  div_local$Site <- dat1$Site
+  div_local$Site <- dat1$temp
   
-  ### Get average diversity values per Site ###
+  
+  # Get average diversity values per Site 
   
   average_div <- div_local %>%
     group_by(Site) %>%
     summarise_all(mean)
-
-
-### Summed up abundance
-
-dat1 <- read.csv(data_file, header = TRUE, sep =",")
-
-data_sum <- dat1 %>%
-group_by(Site) %>%
-summarise_all(sum)
-
-data_sum$Site <- NULL
-
-### Calculate gamma diversity indices
-
-N_gamma <- rowSums(data_sum)
-S_gamma <- rowSums(data_sum>0)
-PIE_gamma <- rarefy(data_sum, 2) -1
-S_pie_gamma <- 1/(1-PIE_gamma)
-
-div_gamma <- cbind(N_gamma, S_gamma, PIE_gamma, S_pie_gamma)
-div_gamma <- as.data.frame(div_gamma)
-div_gamma$Site <- average_div$Site
-
-# merge alpha and gamma diversity indices into one dataframe
-
-diversity_indices <- merge(average_div, div_gamma, by = "Site")
-
-# CHAO RICHNESS
-# Calculating S_chao values from summed up abundance data
-# S_chao is referred to as S_total in the manuscript
-
-# Transpose data to fit iNEXT format requirements
-t_data_sum <- t(data_sum)
-# Convert into a dataframe
-t_data_sum <- as.data.frame(t_data_sum)
-# Calculate chao using the ChaoRichness function in iNEXT
-chao_values <- ChaoRichness(t_data_sum, datatype = "abundance")
-
-# Add S_chao/S_total values to the "diversity_indices" dataframe
-
-diversity_indices$S_total <- chao_values$Estimator
+  
+  # Sum up the raw abundance data
+  
+  dat1 <- read.csv(data_file, header = TRUE, sep =",")
+  
+  data_sum <- dat1 %>%
+  group_by(Site) %>%
+  summarise_all(sum)
+  
+  data_sum$Site <- NULL
+  
+  # Calculate gamma diversity indices
+  
+  N_gamma <- rowSums(data_sum)
+  S_gamma <- rowSums(data_sum>0)
+  PIE_gamma <- rarefy(data_sum, 2) -1
+  S_pie_gamma <- 1/(1-PIE_gamma)
+  
+  div_gamma <- cbind(N_gamma, S_gamma, PIE_gamma, S_pie_gamma)
+  div_gamma <- as.data.frame(div_gamma)
+  # Get site info
+  div_gamma$Site <- average_div$Site
+  
+  
+  # Merge alpha and gamma diversity indices into one dataframe
+  
+  diversity_indices <- merge(average_div, div_gamma, by = "Site")
+  
+  # CHAO RICHNESS
+  # Calculating S_chao values from summed up abundance data
+  # S_chao is referred to as S_total in the manuscript
+  
+  # Transpose data to fit iNEXT format requirements
+  t_data_sum <- t(data_sum)
+  # Convert into a dataframe
+  t_data_sum <- as.data.frame(t_data_sum)
+  # Calculate chao using the ChaoRichness function in iNEXT
+  chao_values <- ChaoRichness(t_data_sum, datatype = "abundance")
+  
+  # Add S_chao/S_total values to the "diversity_indices" dataframe
+  
+  diversity_indices$S_total <- chao_values$Estimator
 
 
   div_list[[i]] <- diversity_indices
 
 }
 
-
-write.csv2(div_list[[1]], "~/Desktop/ISAR Case Studies/diversity_indices/andamans.csv")
-write.csv2(div_list[[2]], "~/Desktop/ISAR Case Studies/diversity_indices/glades.csv")
-write.csv2(div_list[[3]], "~/Desktop/ISAR Case Studies/diversity_indices/fragments.csv")
+# Save the individual diversity csv files in the "diversity_indices" folder
+write.csv2(div_list[[1]], "~/Desktop/ISAR_DATA/diversity_indices/andamans.csv")
+write.csv2(div_list[[2]], "~/Desktop/ISAR_DATA/diversity_indices/glades.csv")
+write.csv2(div_list[[3]], "~/Desktop/ISAR_DATA/diversity_indices/fragments.csv")
 
 
 
