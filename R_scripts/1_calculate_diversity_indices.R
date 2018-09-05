@@ -84,7 +84,7 @@ N_gamma <- rowSums(andamans_abund_sum)
 S_gamma <- rowSums(andamans_abund_sum>0)
 
 PIE_gamma <- rarefy(andamans_abund_sum, 2) -1
-S_pie_gamma <- 1/(1-PIE)
+S_pie_gamma <- 1/(1-PIE_gamma)
 
 div_gamma <- cbind(N_gamma,S_gamma,PIE_gamma, S_pie_gamma)
 div_gamma <- as.data.frame(div_gamma)
