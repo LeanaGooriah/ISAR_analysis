@@ -1,7 +1,13 @@
+
+# code used to generate ggplot in manuscript
+
+#--------------------------------------------------------------------------------------------------------
+
 # LOAD NECESSARY LIBRARIES
 
 library(ggplot2)
 library(readr)
+library(ggpubr)
 
 # load plot file with encoding to read greek letters
 
@@ -12,11 +18,11 @@ lizards_plot_data <- read.csv("lizards_ggplot.csv", encoding = "UTF-8")
 lizards_plot_data$L_T_B_x = factor(lizards_plot_data$L_T_B, levels=c('A) Total','B) Local','C) Beta'))
 
 lizards_plot_data$Metrics = factor(lizards_plot_data$Metrics,
-                                     levels = c(levels(lizards_plot_data$Metrics)[7], levels(lizards_plot_data$Metrics)[1:6]),
+                                     levels = c(levels(lizards_plot_data$Metrics)[7], 
+                                     levels(lizards_plot_data$Metrics)[1:6]),
                                      ordered = TRUE)
 
-
-library(ggplot2)
+#ISLANDS
 
 lizards_data_all <- ggplot(data = lizards_plot_data) +
   geom_point(aes(
@@ -48,11 +54,9 @@ lizards_data_all <- ggplot(data = lizards_plot_data) +
   scale_color_manual(values = c("#d73027","#5ab4ac","#d8b365","#7fbf7b","#fc8d59","#91bfdb","#af8dc3")) +
   scale_fill_manual(values = c("#d73027","#5ab4ac","#d8b365","#7fbf7b","#fc8d59","#91bfdb","#af8dc3")) + 
   scale_shape_manual(values = c(8,17,16,17,16,17,16)) 
-
-
   lizards_data_all 
   
-###Plot only legend
+# Plot only legend to be added at the end 
   library(grid)
   library(gridExtra)
   # create inset table 
@@ -66,19 +70,9 @@ lizards_data_all <- ggplot(data = lizards_plot_data) +
     return(legend)} 
   
   legend <- g_legend(lizards_data_all) 
-  
-  # or use cowplot package
-  # legend <- cowplot::get_legend(my_hist)
-  
   grid.newpage()
   grid.draw(legend)
   legend
-#scale_color_discrete(viridis::inferno(7))
-#factor(levels = Metrics)
-
-#lizards_data_all + scale_color_manual(values=wes_palette(n=7, name="Darjeeling1", type = "continuous"))
-
-#ggsave(filename = "test.pdf", plot = lizards_data_all, device = "pdf", width = 18, height = 15, units = "cm")
 
 #GLADES
 glades_plot <- read_csv("glades_ggplot.csv")
@@ -87,9 +81,6 @@ glades_plot <- subset(glades_plot, Metrics != "S sample")
 
 glades_plot$BTS_x = factor(glades_plot$BTS, levels=c('D) Total','E) Local','F) Beta'))
 
-# glades_plot$Metrics = factor(glades_plot$Metrics,
-                                   # levels = c(levels(glades_plot$Metrics)[7], levels(glades_plot$Metrics)[1:6]),
-                                   # ordered = TRUE)
 glades_all <- ggplot(data = glades_plot) +
   geom_point(aes(x = glade_area, y = Value, col = Metrics, shape = Metrics), size=2.0) +
   stat_smooth(aes(x = glade_area, y = Value, col = Metrics, linetype=Metrics, fill = Metrics),method="lm", se=TRUE) + 
@@ -106,19 +97,7 @@ glades_all <- ggplot(data = glades_plot) +
   scale_shape_manual(values = c(17,16,17,16,17,16,8))
 glades_all 
 
-
-#c("green4","tan3","tomato","lightseagreen","deepskyblue","lightslateblue","maroon1")
-#glades_all + scale_color_manual(values=wes_palette(n=7, name="Darjeeling1", type = "continuous"))
-
-
-
-#library(colorspace)
-#pal <- choose_palette()
-
-#GILALDI 
-
-setwd("~/Desktop/ISAR ggplot")
-
+# FRAGMENTS
 gilaldi_ggplot <- read_csv("gilaldi_ggplot.csv")
 
 gilaldi_ggplot <- subset(gilaldi_ggplot, Site != "12")
@@ -143,7 +122,7 @@ gilaldi_all
 
 
 
-library(ggpubr)
+
 case_studies <- ggarrange(lizards_data_all, glades_all, gilaldi_all, ncol = 1, nrow = 3)
 
 ggsave(filename = "case_studies.png", plot = case_studies, device = "png", width = 25, height = 25, units = "cm")
