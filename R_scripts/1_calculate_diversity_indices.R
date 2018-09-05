@@ -1,3 +1,4 @@
+
 ####################################################################################
 # Author : Leana Gooriah
 # Email : leana_devi.gooriah@idiv.de
@@ -19,105 +20,104 @@ library(readr)
 
 # ----------------------------------------------------------------------------------
 
-# ALPHA DIVERSITY INDICES
+# Set path and directories
 
-# load the raw abundance data
+path1 <- ("~/Desktop/ISAR Case Studies/")
+data_path <- paste(path1, "datasets/", sep = "")
+div_path <- paste(path1, "diversity_indices/", sep = "")
 
-andamans_abund <- read_csv("andamans_data.csv")
+# Read all file names
+filenames <- list.files(data_path, pattern="*.csv*", full.names = F)
 
-# Save site info in temp object
+# Get list of study ids
+filename_roots <- gsub("_data.csv","",filenames) # remove _data from filenames
 
-temp <- andamans_abund$Site
+study_ids <- unique(filename_roots)
+study_ids
 
-# Remove "Site" column (since it contains non-integers) 
-
-andamans_abund$Site <- NULL
-
-# Calculate local diversity indices
-
-N <- rowSums(andamans_abund)
-S <- rowSums(andamans_abund>0)
-
-PIE <- rarefy(andamans_abund, 2) -1
-S_pie <- 1/(1-PIE)
-
-div_local <- cbind(N,S,PIE, S_pie)
-div_local <- as.data.frame(div_local)
+# Prepare output data
+div_list <- list()
 
 
-# add Site info to diversity dataframe
+# ALPHA & GAMMA DIVERSITY INDICES 
 
-div_local$Site <- Site
+# Loop over all studies
 
-# Calculate average diversity values per Site 
-# that is : diversity values averaged across the number of plots or quadrats
+for (i in 1:3){
+  
+  data_file <- paste(data_path, study_ids[i], "_data.csv", sep ="")
+  print(data_file)
+  
+  dat1 <- read.csv(data_file, header = TRUE, sep =",")
+  dat1$Site <- NULL
+  
+  N_local <- rowSums(dat1)
+  S_local <- rowSums(dat1>0)
+  PIE_local <- rarefy(dat1, 2) -1
+  S_pie_local <- 1/(1-PIE_local)
+  
+  div_local <- cbind(N_local, S_local, PIE_local, S_pie_local)
+  div_local <- as.data.frame(div_local)
+  
+  dat1 <- read.csv(data_file, header = TRUE, sep =",")
+  div_local$Site <- dat1$Site
+  
+  ### Get average diversity values per Site ###
+  
+  average_div <- div_local %>%
+    group_by(Site) %>%
+    summarise_all(mean)
 
-div_alpha <- div_local %>%
-group_by(Site) %>%
-summarise_all(mean)
 
-# ----------------------------------------------------------------------------------
+### Summed up abundance
 
-# GAMMA DIVERSITY INDICES
+dat1 <- read.csv(data_file, header = TRUE, sep =",")
 
-# load the raw abundance data
-
-andamans_abund <- read_csv("andamans_data.csv")
-
-# Get summed up values of abundance data per site
-
-andamans_abund_sum <- andamans_abund %>%
+data_sum <- dat1 %>%
 group_by(Site) %>%
 summarise_all(sum)
 
-# Save site info in temp object
+data_sum$Site <- NULL
 
-Site2 <- andamans_abund_sum$Site
+### Calculate gamma diversity indices
 
-# Remove "Site" column (since it contains non-integers) 
-
-andamans_abund_sum$Site <- NULL
-
-# Calculate gamma diversity indices
-
-N_gamma <- rowSums(andamans_abund_sum)
-S_gamma <- rowSums(andamans_abund_sum>0)
-
-PIE_gamma <- rarefy(andamans_abund_sum, 2) -1
+N_gamma <- rowSums(data_sum)
+S_gamma <- rowSums(data_sum>0)
+PIE_gamma <- rarefy(data_sum, 2) -1
 S_pie_gamma <- 1/(1-PIE_gamma)
 
-div_gamma <- cbind(N_gamma,S_gamma,PIE_gamma, S_pie_gamma)
+div_gamma <- cbind(N_gamma, S_gamma, PIE_gamma, S_pie_gamma)
 div_gamma <- as.data.frame(div_gamma)
-
-# get Site info from div_alpha
-
-div_gamma$Site <- Site 
+div_gamma$Site <- average_div$Site
 
 # merge alpha and gamma diversity indices into one dataframe
 
-diversity_indices <- merge(div_alpha, div_gamma, by = "Site")
+diversity_indices <- merge(average_div, div_gamma, by = "Site")
 
-# ----------------------------------------------------------------------------------
-
-# CHAO RICHNESS 
+# CHAO RICHNESS
 # Calculating S_chao values from summed up abundance data
-# S_chao is referred to as S_total in the manuscript 
+# S_chao is referred to as S_total in the manuscript
 
-# Transpose data to fit iNEXT format
-t_andamans_abund_sum<- t(andamans_abund_sum)
+# Transpose data to fit iNEXT format requirements
+t_data_sum <- t(data_sum)
 # Convert into a dataframe
-t_andamans_abund_sum <- as.data.frame(t_andamans_abund_sum)
+t_data_sum <- as.data.frame(t_data_sum)
 # Calculate chao using the ChaoRichness function in iNEXT
-chao_values <- ChaoRichness(t_andamans_abund_sum, datatype = "abundance")
+chao_values <- ChaoRichness(t_data_sum, datatype = "abundance")
 
-# Add S_chao/S_total values to the "diversity_indices" dataframe 
+# Add S_chao/S_total values to the "diversity_indices" dataframe
 
 diversity_indices$S_total <- chao_values$Estimator
 
 
+  div_list[[i]] <- diversity_indices
+
+}
 
 
-
+write.csv2(div_list[[1]], "~/Desktop/ISAR Case Studies/diversity_indices/andamans.csv")
+write.csv2(div_list[[2]], "~/Desktop/ISAR Case Studies/diversity_indices/glades.csv")
+write.csv2(div_list[[3]], "~/Desktop/ISAR Case Studies/diversity_indices/fragments.csv")
 
 
 
