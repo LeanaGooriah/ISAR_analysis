@@ -1,0 +1,99 @@
+island_name,island_area,L_T_B,Metrics,Value
+Alexandria,3.6,B) Local,α S PIE,1.647058824
+Boat Island,2.8,B) Local,α S PIE,0
+Chester Island,0.09,B) Local,α S PIE,1
+Havelock,113.93,B) Local,α S PIE,5.861111111
+Hobday Island,3.6,B) Local,α S PIE,2.75
+Little Andaman,734.39,B) Local,α S PIE,3.244359379
+Long Island,17.9,B) Local,α S PIE,2.25
+Neil Island,18.9,B) Local,α S PIE,3.338121118
+North Andaman,1375.99,B) Local,α S PIE,4.321969697
+Redskin,3.3,B) Local,α S PIE,1.561904762
+Rutland,137.17,B) Local,α S PIE,2.467951318
+Snob Island,0.22,B) Local,α S PIE,1
+South Andaman,1350.82,B) Local,α S PIE,2.572833628
+Tarmugli,11.5,B) Local,α S PIE,2
+Alexandria,3.6,A) Total, γ S PIE,1.693069307
+Boat Island,2.8,A) Total, γ S PIE,0
+Chester Island,0.09,A) Total, γ S PIE,1
+Havelock,113.93,A) Total, γ S PIE,5.560747664
+Hobday Island,3.6,A) Total, γ S PIE,2.333333333
+Little Andaman,734.39,A) Total, γ S PIE,2.991939891
+Long Island,17.9,A) Total, γ S PIE,3.461538462
+Neil Island,18.9,A) Total, γ S PIE,2.640221402
+North Andaman,1375.99,A) Total, γ S PIE,3.762711864
+Redskin,3.3,A) Total, γ S PIE,1.67003367
+Rutland,137.17,A) Total, γ S PIE,2.383333333
+Snob Island,0.22,A) Total, γ S PIE,1
+South Andaman,1350.82,A) Total, γ S PIE,2.399280576
+Tarmugli,11.5,A) Total, γ S PIE,2.516129032
+Alexandria,3.6,A) Total,S total,2
+Boat Island,2.8,A) Total,S total,2.5
+Chester Island,0.09,A) Total,S total,1
+Havelock,113.93,A) Total,S total,7
+Hobday Island,3.6,A) Total,S total,2
+Little Andaman,734.39,A) Total,S total,7
+Long Island,17.9,A) Total,S total,3
+Neil Island,18.9,A) Total,S total,5
+North Andaman,1375.99,A) Total,S total,6
+Redskin,3.3,A) Total,S total,3
+Rutland,137.17,A) Total,S total,5
+Snob Island,0.22,A) Total,S total,1
+South Andaman,1350.82,A) Total,S total,15
+Tarmugli,11.5,A) Total,S total,3
+Alexandria,3.6,C) Beta,β S PIE,1.027934936
+Boat Island,2.8,C) Beta,β S PIE,0
+Chester Island,0.09,C) Beta,β S PIE,1
+Havelock,113.93,C) Beta,β S PIE,0.9487531559
+Hobday Island,3.6,C) Beta,β S PIE,0.8484848485
+Little Andaman,734.39,C) Beta,β S PIE,0.9221974329
+Long Island,17.9,C) Beta,β S PIE,1.538461538
+Neil Island,18.9,C) Beta,β S PIE,0.7909303794
+North Andaman,1375.99,C) Beta,β S PIE,0.8706011676
+Redskin,3.3,C) Beta,β S PIE,1.069228874
+Rutland,137.17,C) Beta,β S PIE,0.9657132681
+Snob Island,0.22,C) Beta,β S PIE,1
+South Andaman,1350.82,C) Beta,β S PIE,0.9325440051
+Tarmugli,11.5,C) Beta,β S PIE,1.258064516
+Alexandria,3.6,A) Total, γ Sn,1.889
+Boat Island,2.8,A) Total, γ Sn,1
+Chester Island,0.09,A) Total, γ Sn,1
+Havelock,113.93,A) Total, γ Sn,6.348
+Hobday Island,3.6,A) Total, γ Sn,1.971
+Little Andaman,734.39,A) Total, γ Sn,4.436
+Long Island,17.9,A) Total, γ Sn,2.73
+Neil Island,18.9,A) Total, γ Sn,4.253
+North Andaman,1375.99,A) Total, γ Sn,4.005
+Redskin,3.3,A) Total, γ Sn,2.309
+Rutland,137.17,A) Total, γ Sn,3.831
+Snob Island,0.22,A) Total, γ Sn,1
+South Andaman,1350.82,A) Total, γ Sn,4.058
+Tarmugli,11.5,A) Total, γ Sn,1.965
+Alexandria,3.6,B) Local,α Sn,2.465333333
+Boat Island,2.8,B) Local,α Sn,0.5
+Chester Island,0.09,B) Local,α Sn,1
+Havelock,113.93,B) Local,α Sn,5.453
+Hobday Island,3.6,B) Local,α Sn,2.538
+Little Andaman,734.39,B) Local,α Sn,4.8553
+Long Island,17.9,B) Local,α Sn,2.4445
+Neil Island,18.9,B) Local,α Sn,5.009
+North Andaman,1375.99,B) Local,α Sn,3.766
+Redskin,3.3,B) Local,α Sn,2.611333333
+Rutland,137.17,B) Local,α Sn,3.5892
+Snob Island,0.22,B) Local,α Sn,1.971
+South Andaman,1350.82,B) Local,α Sn,3.835125
+Tarmugli,11.5,B) Local,α Sn,2.17075
+Alexandria,3.6,C) Beta,β Sn,0.7662249865
+Boat Island,2.8,C) Beta,β Sn,2
+Chester Island,0.09,C) Beta,β Sn,1
+Havelock,113.93,C) Beta,β Sn,1.164129837
+Hobday Island,3.6,C) Beta,β Sn,0.7765957447
+Little Andaman,734.39,C) Beta,β Sn,0.9136407637
+Long Island,17.9,C) Beta,β Sn,1.1167928
+Neil Island,18.9,C) Beta,β Sn,0.849071671
+North Andaman,1375.99,C) Beta,β Sn,1.06346256
+Redskin,3.3,C) Beta,β Sn,0.8842226194
+Rutland,137.17,C) Beta,β Sn,1.067368773
+Snob Island,0.22,C) Beta,β Sn,0.5073566717
+South Andaman,1350.82,C) Beta,β Sn,1.058114142
+Tarmugli,11.5,C) Beta,β Sn,0.9052170909
