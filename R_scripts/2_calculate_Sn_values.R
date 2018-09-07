@@ -11,6 +11,7 @@ frag_abund <- read_csv("~/ISAR_DATA/fragments.csv")
 # Transpose data to fit iNEXT data format requirement
 t_frag_abund<- t(frag_abund)
 t_frag_abund <- as.data.frame(t_frag_abund)
+colnames(t_frag_abund) <- as.character(t_frag_abund[1,])
 
 
 # Get average N values where Sn will be interpolated or extrapolated 
@@ -45,6 +46,8 @@ frag_sum <- frag_abund %>%
 
 t_frag_sum <- t(frag_sum)
 t_frag_sum <- as.data.frame(t_frag_sum) 
+colnames(t_frag_sum) <- as.character(t_frag_sum[1,])
+
 
 ##### Interpolation and extrapolation using iNEXT #####
 
