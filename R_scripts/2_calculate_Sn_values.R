@@ -1,39 +1,63 @@
+# Interpolating and extrapolating alpha & gamma Sn values
+# Example using case study 3 - fragmentation data 
 
-# Interpolating and extrapolating alpha Sn values
+#------------------------------------------------------------------------------------------
+# ALPHA SN ESTIMATES
+# load transect level data and iNEXT
 
-# Get average N values from which Sn will be interpolated or extrapolated from local rarefaction curves
-# load diversity file
+library(iNEXT)
+frag_abund <- read_csv("~/ISAR_DATA/fragments.csv")
 
-m <- round(diversity_indices$N)
+# Transpose data to fit iNEXT data format requirement
+t_frag_abund<- t(frag_abund)
+t_frag_abund <- as.data.frame(t_frag_abund)
+
+
+# Get average N values where Sn will be interpolated or extrapolated 
+#from local rarefaction curves (one curve per transect per fragment)
+
+m <- c(100,103,158,166,195,214,215,217,231,243,258,280)
 
 ##### Interpolation and extrapolation using iNEXT #####
 
-# load transect level data
+inext_data_a <- iNEXT(t_frag_abund, q = 0, datatype = "abundance", size = m)
+inext_data_a
 
-lizards_abund <- read_csv("lizards_andamans - abund.csv")
+# Extract iNEXT estimates (Sn values = qd column
+# Sn values (qd column in exdat2) at specific N (number of individuals) referred to as "m" 
+
+extrapolated_data_a <- inext_data_a$iNextEst
+extrapolated_data_a
+ext_dat_a <- do.call("rbind",extrapolated_data_a)
+
+# Save iNEXT Sn estimates and calculate average Sn values per fragment
+write.csv2(ext_dat_a, "/Users/leanagooriah/ISAR_DATA/alpha_frag.csv")
 
 
-# Transpose data to fit iNEXT data format requirement
-t_lizards_abund<- t(lizards_abund)
-t_lizards_abund <- as.data.frame(t_lizards_abund)
+# GAMMA SN ESTIMATES
 
-inext_data2 <- iNEXT(t_lizards_abund, q = 0, datatype = "abundance", size = m)
-inext_data2
-
-# Extract iNEXT estimates per transect per Site/Island
-
-extrapolated_data2 <- inext_data2$iNextEst
-extrapolated_data2
-ext_dat2 <- do.call("rbind",extrapolated_data2)
-
-#lizards_abund <- read_csv("lizards_andamans - abund.csv")
-div_local$a_Sn <- ext_dat2$qD
-
-# Get average values of Sn per Site
-
-alpha_lizards <- div_local %>%
+# Calculate summed up abundance 
+frag_sum <- frag_abund %>%
   group_by(Site) %>%
-  summarise_all(mean)
+  summarise_all(sum)
+
+# transpose data
+
+t_frag_sum <- t(frag_sum)
+t_frag_sum <- as.data.frame(t_frag_sum) 
+
+##### Interpolation and extrapolation using iNEXT #####
+
+inext_data_g <- iNEXT(t_frag_abund, q = 0, datatype = "abundance", size = m)
+inext_data_g 
+
+extrapolated_data_g <- inext_data_g$iNextEst
+extrapolated_data_g
+ext_dat_g <- do.call("rbind",extrapolated_data_g)
+
+# Save iNEXT gamma Sn estimates 
+write.csv2(ext_dat_g, "/Users/leanagooriah/ISAR_DATA/gamma_frag.csv")
 
 
-write.csv2(alpha_lizards, "/Users/leanagooriah/Downloads/local_lizards.csv")
+
+
