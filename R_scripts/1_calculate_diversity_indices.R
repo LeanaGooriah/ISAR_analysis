@@ -48,9 +48,7 @@ for (i in 1:3){
   data_file <- paste(data_path, study_ids[i], "_data.csv", sep ="")
   print(data_file)
   
-  dat1 <- read.csv(data_file, header = TRUE, sep =",")
-  temp <- dat1$Site
-  dat1$Site <- NULL
+  dat1 <- read.csv(data_file, header = TRUE, sep =",", row.names = 1)
   
   N_local <- rowSums(dat1)
   S_local <- rowSums(dat1>0)
@@ -60,7 +58,6 @@ for (i in 1:3){
   div_local <- cbind(N_local, S_local, PIE_local, S_pie_local)
   div_local <- as.data.frame(div_local)
   
-  div_local$Site <- dat1$temp
   
   
   # Get average diversity values per Site 
@@ -71,13 +68,12 @@ for (i in 1:3){
   
   # Sum up the raw abundance data
   
-  dat1 <- read.csv(data_file, header = TRUE, sep =",")
+  dat1 <- read.csv(data_file, header = TRUE, sep =",", row.names = 1)
   
   data_sum <- dat1 %>%
   group_by(Site) %>%
   summarise_all(sum)
   
-  data_sum$Site <- NULL
   
   # Calculate gamma diversity indices
   
@@ -87,10 +83,7 @@ for (i in 1:3){
   S_pie_gamma <- 1/(1-PIE_gamma)
   
   div_gamma <- cbind(N_gamma, S_gamma, PIE_gamma, S_pie_gamma)
-  div_gamma <- as.data.frame(div_gamma)
-  # Get site info
-  div_gamma$Site <- average_div$Site
-  
+  div_gamma <- as.data.frame(div_gamma)  
   
   # Merge alpha and gamma diversity indices into one dataframe
   
