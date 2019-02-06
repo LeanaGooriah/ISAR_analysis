@@ -1,4 +1,4 @@
-# A framework for dissecting ecological mechanisms underlying the island species-area relationship (ISAR).
+# A framework for disentangling ecological mechanisms underlying the island species-area relationship (ISAR).
 
  ## Authors
  *Leana Gooriah*
