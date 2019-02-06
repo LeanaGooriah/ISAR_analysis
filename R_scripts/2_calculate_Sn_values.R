@@ -16,8 +16,7 @@ colnames(t_frag_abund) <- as.character(t_frag_abund[1,])
 
 # Get average N values where Sn will be interpolated or extrapolated 
 #from local rarefaction curves (one curve per transect per fragment)
-
-m <- c(100,103,158,166,195,214,215,217,231,243,258,280)
+m <- (mean(rowSums(frag_abund)))
 
 ##### Interpolation and extrapolation using iNEXT #####
 
