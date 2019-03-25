@@ -50,20 +50,20 @@ write.csv2(average_Sn_alpha, "/Users/leanagooriah/desktop/ISAR_DATA/alpha_Sn_fra
 frag_abund <- read_csv("Desktop/ISAR_DATA/datasets/forest_fragments_data.csv")
 
 # Calculate summed up abundance 
-glade_sum <- frag_abund %>%
+frag_sum <- frag_abund %>%
   group_by(Site) %>%
   summarise_all(sum)
 
 # transpose data
-Site_names <- glade_sum$Site
-glade_sum$Site <- NULL
-t_glade_sum <- t(glade_sum)
-t_glade_sum <- as.data.frame(t_glade_sum) 
+Site_names <- frag_sum$Site
+frag_sum$Site <- NULL
+t_frag_sum <- t(frag_sum)
+t_frag_sum <- as.data.frame(t_frag_sum) 
 
 
 ##### Interpolation and extrapolation using iNEXT #####
 
-inext_data_g <- iNEXT(t_glade_sum, q = 0, datatype = "abundance", size = m)
+inext_data_g <- iNEXT(t_frag_sum, q = 0, datatype = "abundance", size = m)
 inext_data_g 
 
 extrapolated_data_g <- inext_data_g$iNextEst
