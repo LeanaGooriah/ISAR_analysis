@@ -6,7 +6,17 @@
 # load transect level data and iNEXT
 
 library(iNEXT)
-frag_abund <- read_csv("Desktop/ISAR_DATA/datasets/forest_fragments_data.csv")
+library(tidyverse)
+
+# please set all path relative to the GitHub repo folder 
+# to do that please do the following in RStudio:
+# Menu Session --> Set working directory --> To project directory
+work_dir <- getwd()
+
+frag_abund <- read_csv("ISAR_DATA/datasets/forest_fragments_data.csv")
+
+# The file is called forest fragments, but the species names are really familier to me.
+# Apparently this is data from my project in Israel. Is this correct???
 
 # Transpose data to fit iNEXT data format requirement
 Site_names <- frag_abund$Site
@@ -15,10 +25,19 @@ frag_abund$Site <- NULL
 t_frag_abund<- t(frag_abund)
 t_frag_abund <- as.data.frame(t_frag_abund)
 
+# Implement approach by Chao et al. 2014
+n_sites <- rowSums(frag_abund)
+
+r <- 2
+
+max_n <- max(n_sites)
+min_n_r <- min(r * n_sites)
+n <- max(max_n, min_n_r)
+# --------------------
 
 # Get average N values where Sn will be interpolated or extrapolated 
 #from local rarefaction curves (one curve per transect per fragment)
-n <- round(mean(rowSums(frag_abund)))
+#n <- round(mean(rowSums(frag_abund)))
 
 m <- c(10,20,n)
 
@@ -43,11 +62,13 @@ average_Sn_alpha <- ext_dat_a %>%
   summarise_all(mean)
 
 # Save iNEXT Sn estimates and calculate average Sn values per fragment
-write.csv2(average_Sn_alpha, "/Users/leanagooriah/desktop/ISAR_DATA/alpha_Sn_frag.csv")
+outfile <- paste(work_dir, "/ISAR_DATA/alpha_Sn_frag.csv", sep = "") 
+write.csv2(average_Sn_alpha, outfile)
 
 
 ###### GAMMA SN ESTIMATES #####
-frag_abund <- read_csv("Desktop/ISAR_DATA/datasets/forest_fragments_data.csv")
+
+frag_abund <- read_csv("ISAR_DATA/datasets/forest_fragments_data.csv")
 
 # Calculate summed up abundance 
 frag_sum <- frag_abund %>%
@@ -73,6 +94,8 @@ ext_dat_g <- subset(ext_dat_g, m == n)
 ext_dat_g$method <- NULL
 ext_dat_g$Site <- Site_names
 # Save iNEXT gamma Sn estimates 
-write.csv2(ext_dat_g, "/Users/leanagooriah/desktop/ISAR_DATA/gamma_frag.csv")
+
+outfile <- paste(work_dir, "/ISAR_DATA/gamma_frag.csv", sep = "") 
+write.csv2(ext_dat_g, outfile)
 
 
