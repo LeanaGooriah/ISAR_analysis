@@ -3,7 +3,7 @@
 # Email : leana_devi.gooriah@idiv.de
 #####################################################################################
 # Description : This script can be used to calculate the following diversity indices:
-# Sn, S_PIE, Beta_S, Beta_PIE (following 'mobr' terminology)
+# Stotal, Sn, S_PIE, Beta_Sn, Beta_S_PIE (following 'mobr' terminology)
 # at two different scales: total (gamma) and local (alpha)
 #####################################################################################
 # 1. load data
