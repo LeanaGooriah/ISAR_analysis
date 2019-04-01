@@ -146,7 +146,7 @@ div_out$index <- ifelse(div_out$index == "S_asymp", "S_total", div_out$index)
 div_out <- filter(div_out, is.na(value) == FALSE) # remove NaN (where PIE could not be calculated)
 
 div_out$Scale = factor(div_out$Scale, levels = c("gamma","alpha","beta"))
-div_out$index = factor(diversity_out$index, levels=c("S_total","S_n","S_PIE","beta_S_n","beta_S_PIE"))
+div_out$index = factor(div_out$index, levels=c("S_total","S_n","S_PIE","beta_S_n","beta_S_PIE"))
 
 div_out <- arrange(div_out, Study, Scale, index)
 
