@@ -55,32 +55,42 @@ for (i in 1:n_files){
 # at the gamma level                                        #  
 #############################################################
 
-alpha_out <- list()
-beta_out <- list()
-gamma_out <- list()
+div_out <- list()
 
 for (i in 1:n_files){
 
-  #  convert data to mobr format
   alpha_tab <- data_out[[i]]
   alpha_tab$Site <- as.character(alpha_tab$Site)
+  
+  # count samples per site
+  samples_in_sites <- alpha_tab %>%
+    group_by(Site) %>%
+    count()
+  
+  # remove island/fragments with just one sample
+  alpha_tab2 <- alpha_tab %>%
+    left_join(samples_in_sites) %>%
+    filter(n > 1) %>%
+    select(-n)
+  
+  rm(alpha_tab)
  
   # site by species table at the gamma scale
-  gamma_tab <- alpha_tab %>% 
+  gamma_tab <- alpha_tab2 %>% 
     group_by(Site) %>%
     summarise_all(sum) %>%
     ungroup()
   class(gamma_tab) <- ("data.frame")
   
   # estimate reference n for rarefaction and extrapolations
-  n_sites <- rowSums(alpha_tab[,-1])
+  n_sites <- rowSums(alpha_tab2[,-1])
   r <- 2
   max_n <- max(n_sites)
   min_n_r <- min(r * n_sites)
   n_ref <- max(max_n, min_n_r)
   
-  alpha_div <- calc_biodiv(alpha_tab[,-1],
-                           groups = alpha_tab$Site,
+  alpha_div <- calc_biodiv(alpha_tab2[,-1],
+                           groups = alpha_tab2$Site,
                            index = c("S_n","S_PIE"),
                            effort = n_ref,
                            extrapolate = T,
@@ -113,20 +123,17 @@ for (i in 1:n_files){
   beta_div_mean$Study <- study_ids[i]
   gamma_div$Study <- study_ids[i]
   
-  gamma_out[[i]] <- gamma_div
-  alpha_out[[i]] <- alpha_div_mean
-  beta_out[[i]] <- beta_div_mean
+  # Add scales
+  alpha_div_mean$Scale <- "alpha"
+  beta_div_mean$Scale <- "beta"
+  gamma_div$Scale <- "gamma"
+  
+  div_out[[i]] <- bind_rows(alpha_div_mean, beta_div_mean, gamma_div)
 }
 
-gamma_out <- bind_rows(gamma_out)
-gamma_out <- select(gamma_out, Study, Site = group, index, value)
-
-alpha_out <- bind_rows(alpha_out)
-alpha_out <- select(alpha_out, Study, Site = group, index, value)
-
-beta_out <- bind_rows(beta_out)
-beta_out <- select(beta_out, Study, Site = group, index, value)
-
+div_out <- bind_rows(div_out)
+div_out <- select(div_out, Study, Scale, Site = group, index, value)
+div_out$index <- ifelse(div_out$index == "S_asymp", "S_total", div_out$index)
 
 
 ##########################################
@@ -136,92 +143,28 @@ beta_out <- select(beta_out, Study, Site = group, index, value)
 #          scales                        #
 ##########################################
 
-# File 1: save output for analysis and figures
+div_out <- filter(div_out, is.na(value) == FALSE) # remove NaN (where PIE could not be calculated)
 
-gamma_pie_out$Scale<-"gamma" 
-gamma_pie_out$index<-as.character(gamma_pie_out$index) # change "S_asymp" to "S_total"
-gamma_pie_out$index<-ifelse(gamma_pie_out$index=="S_asymp","S_total",gamma_pie_out$index)
-alpha_pie_out$Scale<-"alpha"
+div_out$Scale = factor(div_out$Scale, levels = c("gamma","alpha","beta"))
+div_out$index = factor(diversity_out$index, levels=c("S_total","S_n","S_PIE","beta_S_n","beta_S_PIE"))
 
-pie_out<-rbind.data.frame(gamma_pie_out, alpha_pie_out)
-pie_out$Scale<-as.character(pie_out$Scale)
-pie_out$index<-as.character(pie_out$index)
-
-pie_out$Scale<-ifelse(pie_out$index=="beta_S_PIE","beta",pie_out$Scale)
-
-gamma_n_outt<-select(gamma_n_out, Study, Site=group, value=gamma_Sn)
-gamma_n_outt$Scale<-"gamma"
-gamma_n_outt$index<-"Sn"
-
-alpha_n_outt<-select(alpha_n_out, Study, Site=group, value=Sn)
-alpha_n_outt$Scale<-"alpha"
-alpha_n_outt$index<-"Sn"
-
-n_out<-rbind.data.frame(gamma_n_outt,alpha_n_outt)
-
-beta_Sn<-select(beta_Sn, Study, Site=group, value=beta_Sn)
-beta_Sn$index<-"beta_Sn"
-beta_Sn$Scale<-"beta"
-
-diversity_out<-rbind.data.frame(pie_out, n_out)
-diversity_out<-rbind.data.frame(diversity_out, beta_Sn)
-
-diversity_out<-filter(diversity_out, is.na(value)==FALSE) # remove NaN (where PIE could not be calculated)
-
-diversity_out$Scale = factor(diversity_out$Scale, levels=c("gamma","alpha","beta"))
-diversity_out$index = factor(diversity_out$index, levels=c("S_total","Sn","S_PIE","beta_Sn","beta_S_PIE"))
-
-diversity_out<-arrange(diversity_out, Study, Scale, index)
-
-#######################################
-# Remove beta diversity values from   #
-# islands/fragments with only 1 plot  #
-#######################################
-
-study_a<-data_out[[1]]
-study_a<-summarise(group_by(study_a, Site), PlotN=length(Site))
-study_a<-filter(study_a, PlotN<2) # all islands/fragments > 1 plot
-
-study_b<-data_out[[2]]
-study_b<-summarise(group_by(study_b, Site), PlotN=length(Site))
-study_b$Site<-as.character(study_b$Site)
-study_b<-filter(study_b, PlotN<2)
-study_b$Study<-"lizards_islands_SurendranVasudevan"
-
-study_c<-data_out[[3]]
-study_c<-summarise(group_by(study_c, Site), PlotN=length(Site))
-study_c$Site<-as.character(study_c$Site)
-study_c<-filter(study_c, PlotN<2)
-study_c$Study<-"plants_habitatfragments_Giladi"
-
-drop_beta<-rbind.data.frame(study_b,study_c)
-drop_beta$Scale<-"beta"
-
-drop_beta<-drop_beta%>%
-           unite("comb", Study, Site, Scale,sep=":",remove=FALSE)
-
-rem_beta<-as.character(drop_beta$comb) # vector to ID
-
-diversity_out<-diversity_out%>%
-  unite("comb", Study, Site, Scale,sep=":",remove=FALSE)
-
-diversity_out<-filter(diversity_out, !comb %in% rem_beta ) # remove beta Sn and beta S_PIE
-diversity_out$comb<-NULL
+div_out <- arrange(div_out, Study, Scale, index)
 
 #############################
 # write out clean data file #
 #############################
-write.csv(diversity_out, "ISAR_DATA/diversity_indices/allstudies_allscales_allindices.csv",row.names=FALSE)
+write.csv(div_out, "ISAR_DATA/diversity_indices/allstudies_allscales_allindices.csv", row.names=FALSE)
 
 # File 2: sampling effort calculation of effort for Sn at gamma and alpha scales
-
-alpha_effort<-summarise(group_by(alpha_n_out, Study), effort=unique(effort))
-alpha_effort$Scale<-"alpha"
-
-gamma_effort<-summarise(group_by(gamma_n_out, Study), effort=unique(effort))
-gamma_effort$Scale<-"gamma"
-
-effort<-rbind.data.frame(alpha_effort,gamma_effort)
-effort<-arrange(effort, Study, Scale)
-
-write.csv(effort, "ISAR_DATA/diversity_indices/allstudies_Sn_samplingeffort.csv",row.names=FALSE)
+# # 
+# 
+# alpha_effort<-summarise(group_by(alpha_n_out, Study), effort=unique(effort))
+# alpha_effort$Scale<-"alpha"
+# 
+# gamma_effort<-summarise(group_by(gamma_n_out, Study), effort=unique(effort))
+# gamma_effort$Scale<-"gamma"
+# 
+# effort<-rbind.data.frame(alpha_effort,gamma_effort)
+# effort<-arrange(effort, Study, Scale)
+# 
+# write.csv(effort, "ISAR_DATA/diversity_indices/allstudies_Sn_samplingeffort.csv",row.names=FALSE)
