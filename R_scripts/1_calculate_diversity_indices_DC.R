@@ -24,7 +24,7 @@ require(mobr) # version 1.0
 # Set path and directories #
 ############################
 
-work_dir <- getwd()
+work_dir <- getwd() # first set working directory in Menu/Session/Set working directory/to Project 
 data_path <- paste(work_dir,"/ISAR_DATA/datasets",sep="")
 
 # Read all data file names
@@ -181,7 +181,7 @@ for (l in 1:s){
     group_by(Site) %>%
     summarise_all(sum)
   
-  rowss<-nrow(dat_bb) # number if islands/fragments
+  rowss<-nrow(dat_bb) # number of islands/fragments
   dat_bb<-ungroup(dat_bb)
   dat_mmm<-dat_bb[,-1] # sites by species table
   
@@ -268,6 +268,44 @@ diversity_out$index = factor(diversity_out$index, levels=c("S_total","Sn","S_PIE
 
 diversity_out<-arrange(diversity_out, Study, Scale, index)
 
+#######################################
+# Remove beta diversity values from   #
+# islands/fragments with only 1 plot  #
+#######################################
+
+study_a<-data_out[[1]]
+study_a<-summarise(group_by(study_a, Site), PlotN=length(Site))
+study_a<-filter(study_a, PlotN<2) # all islands/fragments > 1 plot
+
+study_b<-data_out[[2]]
+study_b<-summarise(group_by(study_b, Site), PlotN=length(Site))
+study_b$Site<-as.character(study_b$Site)
+study_b<-filter(study_b, PlotN<2)
+study_b$Study<-"lizards_islands_SurendranVasudevan"
+
+study_c<-data_out[[3]]
+study_c<-summarise(group_by(study_c, Site), PlotN=length(Site))
+study_c$Site<-as.character(study_c$Site)
+study_c<-filter(study_c, PlotN<2)
+study_c$Study<-"plants_habitatfragments_Giladi"
+
+drop_beta<-rbind.data.frame(study_b,study_c)
+drop_beta$Scale<-"beta"
+
+drop_beta<-drop_beta%>%
+           unite("comb", Study, Site, Scale,sep=":",remove=FALSE)
+
+rem_beta<-as.character(drop_beta$comb) # vector to ID
+
+diversity_out<-diversity_out%>%
+  unite("comb", Study, Site, Scale,sep=":",remove=FALSE)
+
+diversity_out<-filter(diversity_out, !comb %in% rem_beta ) # remove beta Sn and beta S_PIE
+diversity_out$comb<-NULL
+
+#############################
+# write out clean data file #
+#############################
 write.csv(diversity_out, "ISAR_DATA/diversity_indices/allstudies_allscales_allindices.csv",row.names=FALSE)
 
 # File 2: sampling effort calculation of effort for Sn at gamma and alpha scales

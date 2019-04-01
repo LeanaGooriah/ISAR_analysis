@@ -148,7 +148,8 @@ alpha_A_f<-ggplot(data = alpha_a, aes(x=Area, y=value, colour=index, fill=index,
                      labels=c("Sn"=expression(paste(alpha,"S"["n"])),
                               "S_PIE"=expression(paste(alpha,"S"["PIE"]))))+
   
-  scale_x_continuous(trans = "log10",breaks = c(1, 100, 1000,10000))+ scale_y_continuous(trans = "log10",limits=c(0.9,14)) +
+  scale_x_continuous(trans = "log10",breaks = c(1, 100, 1000,10000))+
+  scale_y_continuous(trans = "log10",limits=c(0.7,14)) +
   
   labs(x=expression(bold(paste("Area (km" ^2,")"))), y="Species Number") +
   theme_bw()+theme(aspect.ratio = 1,
@@ -240,7 +241,8 @@ beta_A_f<-ggplot(data = beta_a, aes(x=Area, y=value, colour=index, fill=index,sh
                      labels=c("beta_Sn"=expression(paste(beta,"S"["n"])),
                               "beta_S_PIE"=expression(paste(beta,"S"["PIE"]))))+
 
-  scale_x_continuous(trans = "log10",breaks = c(1, 100, 1000,10000))+ scale_y_continuous(trans = "log10",limits=c(0.85,14)) +
+  scale_x_continuous(trans = "log10",breaks = c(1, 100, 1000,10000))+
+        scale_y_continuous(trans = "log10",limits=c(0.65,14)) +
   
 
   labs(x=expression(bold(paste("Area (km" ^2,")"))), y="Species Number") +
@@ -324,5 +326,3 @@ isar_tog<-plot_grid(gamma_A_f,alpha_A_f,beta_A_f,
 
 ggsave(filename = "FIGURE/isar_figure_DCtest.png", plot = isar_tog, 
         device = "png",dpi=500, width = 25, height = 25, units = "cm")
-
-

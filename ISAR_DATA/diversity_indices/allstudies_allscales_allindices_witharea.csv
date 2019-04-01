@@ -1,32 +1,32 @@
 "Study","Site","index","value","Scale","Area"
-"grasshopper_glades_RybergChase","11","S_total",13.248743718593,"gamma",1812.82
-"grasshopper_glades_RybergChase","12","S_total",14.1240458015267,"gamma",2330.77
-"grasshopper_glades_RybergChase","13","S_total",8.984375,"gamma",3625.65
-"grasshopper_glades_RybergChase","14","S_total",13.4957983193277,"gamma",2945.84
-"grasshopper_glades_RybergChase","15","S_total",10.6614583333333,"gamma",2622.12
-"grasshopper_glades_RybergChase","16","S_total",9.66,"gamma",2330.77
-"grasshopper_glades_RybergChase","17","S_total",14.0994974874372,"gamma",4920.52
-"grasshopper_glades_RybergChase","18","S_total",19.9940476190476,"gamma",2330.77
-"grasshopper_glades_RybergChase","19","S_total",11.6622222222222,"gamma",3237.19
-"grasshopper_glades_RybergChase","20","S_total",9.94871794871795,"gamma",226.6
-"grasshopper_glades_RybergChase","21","S_total",20.9990900818926,"gamma",10488.49
-"grasshopper_glades_RybergChase","22","S_total",10.9939393939394,"gamma",582.69
+"grasshopper_glades_RybergChase","11","S_total",13.9895833333333,"gamma",1812.82
+"grasshopper_glades_RybergChase","12","S_total",13.9935064935065,"gamma",2330.77
+"grasshopper_glades_RybergChase","13","S_total",8.49382716049383,"gamma",3625.65
+"grasshopper_glades_RybergChase","14","S_total",13.9594594594595,"gamma",2945.84
+"grasshopper_glades_RybergChase","15","S_total",10.2484076433121,"gamma",2622.12
+"grasshopper_glades_RybergChase","16","S_total",9.16533333333333,"gamma",2330.77
+"grasshopper_glades_RybergChase","17","S_total",14,"gamma",4920.52
+"grasshopper_glades_RybergChase","18","S_total",19.8971061093248,"gamma",2330.77
+"grasshopper_glades_RybergChase","19","S_total",11.9941176470588,"gamma",3237.19
+"grasshopper_glades_RybergChase","20","S_total",10.1634615384615,"gamma",226.6
+"grasshopper_glades_RybergChase","21","S_total",20.9990875912409,"gamma",10488.49
+"grasshopper_glades_RybergChase","22","S_total",11.2153846153846,"gamma",582.69
 "grasshopper_glades_RybergChase","23","S_total",8,"gamma",971.16
 "grasshopper_glades_RybergChase","24","S_total",5.48863636363636,"gamma",226.6
-"grasshopper_glades_RybergChase","25","S_total",11.9943502824859,"gamma",1812.82
+"grasshopper_glades_RybergChase","25","S_total",11.4975369458128,"gamma",1812.82
 "grasshopper_glades_RybergChase","25S","S_total",10,"gamma",582.69
-"grasshopper_glades_RybergChase","26","S_total",16.9848484848485,"gamma",5179.5
-"grasshopper_glades_RybergChase","27","S_total",15.9911111111111,"gamma",2913.47
-"grasshopper_glades_RybergChase","27W","S_total",12.2486979166667,"gamma",1748.08
-"grasshopper_glades_RybergChase","28","S_total",9.98701298701299,"gamma",793.11
-"grasshopper_glades_RybergChase","29","S_total",10.650406504065,"gamma",1812.82
-"grasshopper_glades_RybergChase","30","S_total",3,"gamma",582.69
-"grasshopper_glades_RybergChase","31","S_total",7.49333333333333,"gamma",776.92
-"grasshopper_glades_RybergChase","4","S_total",9.98,"gamma",517.95
+"grasshopper_glades_RybergChase","26","S_total",16.986531986532,"gamma",5179.5
+"grasshopper_glades_RybergChase","27","S_total",15.1659125188537,"gamma",2913.47
+"grasshopper_glades_RybergChase","27W","S_total",12.6628571428571,"gamma",1748.08
+"grasshopper_glades_RybergChase","28","S_total",9.98979591836735,"gamma",793.11
+"grasshopper_glades_RybergChase","29","S_total",10.1640625,"gamma",1812.82
+"grasshopper_glades_RybergChase","30","S_total",3.41666666666667,"gamma",582.69
+"grasshopper_glades_RybergChase","31","S_total",7.98412698412698,"gamma",776.92
+"grasshopper_glades_RybergChase","4","S_total",11,"gamma",517.95
 "grasshopper_glades_RybergChase","5","S_total",11.9894736842105,"gamma",647.44
-"grasshopper_glades_RybergChase","6","S_total",7.94594594594595,"gamma",776.92
-"grasshopper_glades_RybergChase","8","S_total",17.9981949458484,"gamma",6215.4
-"grasshopper_glades_RybergChase","9","S_total",14.4851485148515,"gamma",1553.85
+"grasshopper_glades_RybergChase","6","S_total",7.90476190476191,"gamma",776.92
+"grasshopper_glades_RybergChase","8","S_total",17.995670995671,"gamma",6215.4
+"grasshopper_glades_RybergChase","9","S_total",14.2370689655172,"gamma",1553.85
 "grasshopper_glades_RybergChase","11","Sn",21.3114747971807,"gamma",1812.82
 "grasshopper_glades_RybergChase","12","Sn",21.7528420848659,"gamma",2330.77
 "grasshopper_glades_RybergChase","13","Sn",10.9729710936856,"gamma",3625.65
@@ -55,34 +55,34 @@
 "grasshopper_glades_RybergChase","6","Sn",8.97619047619048,"gamma",776.92
 "grasshopper_glades_RybergChase","8","Sn",19.6557978211885,"gamma",6215.4
 "grasshopper_glades_RybergChase","9","Sn",23.8422112357875,"gamma",1553.85
-"grasshopper_glades_RybergChase","11","S_PIE",4.55808185200496,"gamma",1812.82
-"grasshopper_glades_RybergChase","12","S_PIE",5.41149773071104,"gamma",2330.77
-"grasshopper_glades_RybergChase","13","S_PIE",5.52435064935065,"gamma",3625.65
-"grasshopper_glades_RybergChase","14","S_PIE",6.49372384937239,"gamma",2945.84
-"grasshopper_glades_RybergChase","15","S_PIE",4.29827766179541,"gamma",2622.12
-"grasshopper_glades_RybergChase","16","S_PIE",3.98251748251748,"gamma",2330.77
-"grasshopper_glades_RybergChase","17","S_PIE",4.9,"gamma",4920.52
-"grasshopper_glades_RybergChase","18","S_PIE",5.23612368999871,"gamma",2330.77
-"grasshopper_glades_RybergChase","19","S_PIE",4.01580826109128,"gamma",3237.19
-"grasshopper_glades_RybergChase","20","S_PIE",4.6,"gamma",226.6
-"grasshopper_glades_RybergChase","21","S_PIE",5.95569157075377,"gamma",10488.49
-"grasshopper_glades_RybergChase","22","S_PIE",2.70855690482914,"gamma",582.69
-"grasshopper_glades_RybergChase","23","S_PIE",4.69014084507042,"gamma",971.16
-"grasshopper_glades_RybergChase","24","S_PIE",1.90488431876607,"gamma",226.6
-"grasshopper_glades_RybergChase","25","S_PIE",5.60078086871645,"gamma",1812.82
-"grasshopper_glades_RybergChase","25S","S_PIE",4.54807692307692,"gamma",582.69
-"grasshopper_glades_RybergChase","26","S_PIE",5.4898798571274,"gamma",5179.5
-"grasshopper_glades_RybergChase","27","S_PIE",5.016098839386,"gamma",2913.47
-"grasshopper_glades_RybergChase","27W","S_PIE",3.58639642734456,"gamma",1748.08
-"grasshopper_glades_RybergChase","28","S_PIE",5.276008492569,"gamma",793.11
-"grasshopper_glades_RybergChase","29","S_PIE",4.68325791855204,"gamma",1812.82
-"grasshopper_glades_RybergChase","30","S_PIE",2.5,"gamma",582.69
-"grasshopper_glades_RybergChase","31","S_PIE",3.22946175637394,"gamma",776.92
-"grasshopper_glades_RybergChase","4","S_PIE",3.54545454545455,"gamma",517.95
-"grasshopper_glades_RybergChase","5","S_PIE",3.10970464135021,"gamma",647.44
-"grasshopper_glades_RybergChase","6","S_PIE",3.74618585298197,"gamma",776.92
-"grasshopper_glades_RybergChase","8","S_PIE",4.78656183677407,"gamma",6215.4
-"grasshopper_glades_RybergChase","9","S_PIE",4.4,"gamma",1553.85
+"grasshopper_glades_RybergChase","11","S_PIE",4.57782101167315,"gamma",1812.82
+"grasshopper_glades_RybergChase","12","S_PIE",5.37711864406779,"gamma",2330.77
+"grasshopper_glades_RybergChase","13","S_PIE",5.38291605301915,"gamma",3625.65
+"grasshopper_glades_RybergChase","14","S_PIE",6.49861495844875,"gamma",2945.84
+"grasshopper_glades_RybergChase","15","S_PIE",4.30591259640102,"gamma",2622.12
+"grasshopper_glades_RybergChase","16","S_PIE",3.97945205479452,"gamma",2330.77
+"grasshopper_glades_RybergChase","17","S_PIE",4.8058838320342,"gamma",4920.52
+"grasshopper_glades_RybergChase","18","S_PIE",5.19635343618513,"gamma",2330.77
+"grasshopper_glades_RybergChase","19","S_PIE",4.00838281522878,"gamma",3237.19
+"grasshopper_glades_RybergChase","20","S_PIE",4.5774647887324,"gamma",226.6
+"grasshopper_glades_RybergChase","21","S_PIE",5.95198437769227,"gamma",10488.49
+"grasshopper_glades_RybergChase","22","S_PIE",2.66209262435678,"gamma",582.69
+"grasshopper_glades_RybergChase","23","S_PIE",4.61702127659574,"gamma",971.16
+"grasshopper_glades_RybergChase","24","S_PIE",1.88957055214724,"gamma",226.6
+"grasshopper_glades_RybergChase","25","S_PIE",5.57770870337478,"gamma",1812.82
+"grasshopper_glades_RybergChase","25S","S_PIE",4.55947136563877,"gamma",582.69
+"grasshopper_glades_RybergChase","26","S_PIE",5.44803098773402,"gamma",5179.5
+"grasshopper_glades_RybergChase","27","S_PIE",4.97148021691103,"gamma",2913.47
+"grasshopper_glades_RybergChase","27W","S_PIE",3.6328125,"gamma",1748.08
+"grasshopper_glades_RybergChase","28","S_PIE",5.1875,"gamma",793.11
+"grasshopper_glades_RybergChase","29","S_PIE",4.66037735849057,"gamma",1812.82
+"grasshopper_glades_RybergChase","30","S_PIE",2.8125,"gamma",582.69
+"grasshopper_glades_RybergChase","31","S_PIE",3.14857142857143,"gamma",776.92
+"grasshopper_glades_RybergChase","4","S_PIE",3.8125,"gamma",517.95
+"grasshopper_glades_RybergChase","5","S_PIE",3.08960270498732,"gamma",647.44
+"grasshopper_glades_RybergChase","6","S_PIE",3.67574257425743,"gamma",776.92
+"grasshopper_glades_RybergChase","8","S_PIE",4.81096105527638,"gamma",6215.4
+"grasshopper_glades_RybergChase","9","S_PIE",4.48132780082988,"gamma",1553.85
 "grasshopper_glades_RybergChase","11","Sn",8.62148667890172,"alpha",1812.82
 "grasshopper_glades_RybergChase","12","Sn",6.65193167572318,"alpha",2330.77
 "grasshopper_glades_RybergChase","13","Sn",4.85148227416378,"alpha",3625.65
@@ -207,7 +207,7 @@
 "lizards_islands_SurendranVasudevan","Redskin","S_total",3,"gamma",3.3
 "lizards_islands_SurendranVasudevan","Rutland","S_total",5,"gamma",137.17
 "lizards_islands_SurendranVasudevan","Snob Island","S_total",1,"gamma",0.22
-"lizards_islands_SurendranVasudevan","South Andaman","S_total",8.2479674796748,"gamma",1350.82
+"lizards_islands_SurendranVasudevan","South Andaman","S_total",8.24803149606299,"gamma",1350.82
 "lizards_islands_SurendranVasudevan","Tarmugli","S_total",3,"gamma",11.5
 "lizards_islands_SurendranVasudevan","Alexandria","Sn",2,"gamma",3.6
 "lizards_islands_SurendranVasudevan","Boat Island","Sn",2.5,"gamma",2.8
@@ -226,14 +226,14 @@
 "lizards_islands_SurendranVasudevan","Alexandria","S_PIE",1.69306930693069,"gamma",3.6
 "lizards_islands_SurendranVasudevan","Havelock","S_PIE",5.5607476635514,"gamma",113.93
 "lizards_islands_SurendranVasudevan","Hobday Island","S_PIE",2.14285714285714,"gamma",3.6
-"lizards_islands_SurendranVasudevan","Little Andaman","S_PIE",2.97311128822518,"gamma",734.39
-"lizards_islands_SurendranVasudevan","Long Island","S_PIE",3,"gamma",17.9
+"lizards_islands_SurendranVasudevan","Little Andaman","S_PIE",2.96760207154041,"gamma",734.39
+"lizards_islands_SurendranVasudevan","Long Island","S_PIE",3.46153846153846,"gamma",17.9
 "lizards_islands_SurendranVasudevan","Neil Island","S_PIE",2.64022140221402,"gamma",18.9
-"lizards_islands_SurendranVasudevan","North Andaman","S_PIE",3.70588235294118,"gamma",1375.99
+"lizards_islands_SurendranVasudevan","North Andaman","S_PIE",3.76271186440678,"gamma",1375.99
 "lizards_islands_SurendranVasudevan","Redskin","S_PIE",1.67003367003367,"gamma",3.3
-"lizards_islands_SurendranVasudevan","Rutland","S_PIE",2.36454336147352,"gamma",137.17
+"lizards_islands_SurendranVasudevan","Rutland","S_PIE",2.33585858585859,"gamma",137.17
 "lizards_islands_SurendranVasudevan","Snob Island","S_PIE",1,"gamma",0.22
-"lizards_islands_SurendranVasudevan","South Andaman","S_PIE",2.37831325301205,"gamma",1350.82
+"lizards_islands_SurendranVasudevan","South Andaman","S_PIE",2.40167949615116,"gamma",1350.82
 "lizards_islands_SurendranVasudevan","Tarmugli","S_PIE",2.16666666666667,"gamma",11.5
 "lizards_islands_SurendranVasudevan","Alexandria","Sn",1.66666666666667,"alpha",3.6
 "lizards_islands_SurendranVasudevan","Boat Island","Sn",2.5,"alpha",2.8
@@ -262,8 +262,6 @@
 "lizards_islands_SurendranVasudevan","South Andaman","S_PIE",2.57283362771748,"alpha",1350.82
 "lizards_islands_SurendranVasudevan","Tarmugli","S_PIE",1,"alpha",11.5
 "lizards_islands_SurendranVasudevan","Alexandria","beta_Sn",1.2,"beta",3.6
-"lizards_islands_SurendranVasudevan","Boat Island","beta_Sn",1,"beta",2.8
-"lizards_islands_SurendranVasudevan","Chester Island","beta_Sn",1,"beta",0.09
 "lizards_islands_SurendranVasudevan","Havelock","beta_Sn",1.36807817741418,"beta",113.93
 "lizards_islands_SurendranVasudevan","Hobday Island","beta_Sn",0.923076923076923,"beta",3.6
 "lizards_islands_SurendranVasudevan","Little Andaman","beta_Sn",1.59490402285372,"beta",734.39
@@ -272,7 +270,6 @@
 "lizards_islands_SurendranVasudevan","North Andaman","beta_Sn",1.46703930223008,"beta",1375.99
 "lizards_islands_SurendranVasudevan","Redskin","beta_Sn",1.5,"beta",3.3
 "lizards_islands_SurendranVasudevan","Rutland","beta_Sn",1.66666666666667,"beta",137.17
-"lizards_islands_SurendranVasudevan","Snob Island","beta_Sn",1,"beta",0.22
 "lizards_islands_SurendranVasudevan","South Andaman","beta_Sn",2.79976212471274,"beta",1350.82
 "lizards_islands_SurendranVasudevan","Tarmugli","beta_Sn",1.26315789473685,"beta",11.5
 "lizards_islands_SurendranVasudevan","Alexandria","beta_S_PIE",1.13726372637264,"beta",3.6
@@ -284,19 +281,18 @@
 "lizards_islands_SurendranVasudevan","North Andaman","beta_S_PIE",0.972780468119451,"beta",1375.99
 "lizards_islands_SurendranVasudevan","Redskin","beta_S_PIE",1.18248571407613,"beta",3.3
 "lizards_islands_SurendranVasudevan","Rutland","beta_S_PIE",1.07238095238095,"beta",137.17
-"lizards_islands_SurendranVasudevan","Snob Island","beta_S_PIE",1,"beta",0.22
 "lizards_islands_SurendranVasudevan","South Andaman","beta_S_PIE",0.996538159036767,"beta",1350.82
 "lizards_islands_SurendranVasudevan","Tarmugli","beta_S_PIE",2.51612903225806,"beta",11.5
 "plants_habitatfragments_Giladi","1","S_total",24.131067961165,"gamma",0.001826
-"plants_habitatfragments_Giladi","10","S_total",39.7370192307692,"gamma",0.029119
+"plants_habitatfragments_Giladi","10","S_total",40.0370786516854,"gamma",0.029119
 "plants_habitatfragments_Giladi","11","S_total",33.7990532544379,"gamma",0.038997
 "plants_habitatfragments_Giladi","2","S_total",44.8847926267281,"gamma",0.002393
 "plants_habitatfragments_Giladi","3","S_total",28.1012596899225,"gamma",0.002458
 "plants_habitatfragments_Giladi","4","S_total",18.9638554216867,"gamma",0.003955
-"plants_habitatfragments_Giladi","5","S_total",14,"gamma",0.005616
-"plants_habitatfragments_Giladi","6","S_total",23.1580756013746,"gamma",0.006199
+"plants_habitatfragments_Giladi","5","S_total",25.094375,"gamma",0.005616
+"plants_habitatfragments_Giladi","6","S_total",14,"gamma",0.006199
 "plants_habitatfragments_Giladi","7","S_total",25,"gamma",0.007378
-"plants_habitatfragments_Giladi","8","S_total",23,"gamma",0.013472
+"plants_habitatfragments_Giladi","8","S_total",37.5425752855659,"gamma",0.013472
 "plants_habitatfragments_Giladi","9","S_total",37.5682421667552,"gamma",0.019435
 "plants_habitatfragments_Giladi","1","Sn",23.9323706726245,"gamma",0.001826
 "plants_habitatfragments_Giladi","2","Sn",37.0115481066577,"gamma",0.002393
@@ -342,23 +338,15 @@
 "plants_habitatfragments_Giladi","7","S_PIE",3.77624657334506,"alpha",0.007378
 "plants_habitatfragments_Giladi","8","S_PIE",1.8657050441988,"alpha",0.013472
 "plants_habitatfragments_Giladi","9","S_PIE",3.71185164273508,"alpha",0.019435
-"plants_habitatfragments_Giladi","1","beta_Sn",1.14490044090983,"beta",0.001826
 "plants_habitatfragments_Giladi","10","beta_Sn",1.44124205984345,"beta",0.029119
 "plants_habitatfragments_Giladi","11","beta_Sn",1.61312591982763,"beta",0.038997
-"plants_habitatfragments_Giladi","2","beta_Sn",1.47663284091637,"beta",0.002393
-"plants_habitatfragments_Giladi","3","beta_Sn",1.15829774232768,"beta",0.002458
-"plants_habitatfragments_Giladi","4","beta_Sn",1.11741484766774,"beta",0.003955
 "plants_habitatfragments_Giladi","5","beta_Sn",1.57516544012123,"beta",0.005616
 "plants_habitatfragments_Giladi","6","beta_Sn",1.30395749821631,"beta",0.006199
 "plants_habitatfragments_Giladi","7","beta_Sn",1.56491647780783,"beta",0.007378
 "plants_habitatfragments_Giladi","8","beta_Sn",1.33317145173329,"beta",0.013472
 "plants_habitatfragments_Giladi","9","beta_Sn",1.47969171990048,"beta",0.019435
-"plants_habitatfragments_Giladi","1","beta_S_PIE",1,"beta",0.001826
 "plants_habitatfragments_Giladi","10","beta_S_PIE",1.08943139945477,"beta",0.029119
 "plants_habitatfragments_Giladi","11","beta_S_PIE",1.00838940419697,"beta",0.038997
-"plants_habitatfragments_Giladi","2","beta_S_PIE",1,"beta",0.002393
-"plants_habitatfragments_Giladi","3","beta_S_PIE",1,"beta",0.002458
-"plants_habitatfragments_Giladi","4","beta_S_PIE",1,"beta",0.003955
 "plants_habitatfragments_Giladi","5","beta_S_PIE",0.955021879341781,"beta",0.005616
 "plants_habitatfragments_Giladi","6","beta_S_PIE",0.994422796391927,"beta",0.006199
 "plants_habitatfragments_Giladi","7","beta_S_PIE",1.05142276622565,"beta",0.007378
