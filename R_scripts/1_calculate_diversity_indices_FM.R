@@ -59,38 +59,47 @@ div_out <- list()
 
 for (i in 1:n_files){
 
-  alpha_tab <- data_out[[i]]
-  alpha_tab$Site <- as.character(alpha_tab$Site)
+  dat1 <- data_out[[i]]
+  dat1$Site <- as.character(dat1$Site)
   
   # count samples per site
-  samples_in_sites <- alpha_tab %>%
+  samples_in_sites <- dat1 %>%
     group_by(Site) %>%
     count()
   
-  # remove island/fragments with just one sample
-  alpha_tab2 <- alpha_tab %>%
+  # remove island/fragments with just one sample,
+  # because alpha and gamma diversity are equal by definition there
+  dat2 <- dat1 %>%
     left_join(samples_in_sites) %>%
     filter(n > 1) %>%
     select(-n)
   
-  rm(alpha_tab)
+  # fragment area table
+  frag_area <- dat2 %>% 
+    select(Site, Area) %>%
+    distinct() %>%
+    arrange(Area)
+  
+  # community matrix alpha scale
+  alpha_tab <- dat2 %>%
+    select(-Area, - Unit)
  
   # site by species table at the gamma scale
-  gamma_tab <- alpha_tab2 %>% 
+  gamma_tab <- alpha_tab %>% 
     group_by(Site) %>%
     summarise_all(sum) %>%
     ungroup()
-  class(gamma_tab) <- ("data.frame")
+  class(gamma_tab) <- "data.frame"
   
   # estimate reference n for rarefaction and extrapolations
-  n_sites <- rowSums(alpha_tab2[,-1])
+  n_sites <- rowSums(alpha_tab[,-1])
   r <- 2
   max_n <- max(n_sites)
   min_n_r <- min(r * n_sites)
   n_ref <- max(max_n, min_n_r)
   
-  alpha_div <- calc_biodiv(alpha_tab2[,-1],
-                           groups = alpha_tab2$Site,
+  alpha_div <- calc_biodiv(alpha_tab[,-1],
+                           groups = alpha_tab$Site,
                            index = c("S_n","S_PIE"),
                            effort = n_ref,
                            extrapolate = T,
@@ -112,11 +121,13 @@ for (i in 1:n_files){
              
   alpha_div_mean <- alpha_div %>% 
     group_by(group, index) %>%
-    summarise(value = mean(value, na.rm = T))
+    summarise(value = mean(value, na.rm = T)) %>%
+    ungroup
   
   beta_div_mean <- beta_div %>% 
     group_by(group, index) %>%
-    summarise(value = mean(value, na.rm = T))
+    summarise(value = mean(value, na.rm = T)) %>%
+    ungroup
   
   # Add Study IDs  
   alpha_div_mean$Study <- study_ids[i]
@@ -128,26 +139,23 @@ for (i in 1:n_files){
   beta_div_mean$Scale <- "beta"
   gamma_div$Scale <- "gamma"
   
-  div_out[[i]] <- bind_rows(alpha_div_mean, beta_div_mean, gamma_div)
+  out1 <- bind_rows(alpha_div_mean, beta_div_mean, gamma_div)
+  out1 <- out1 %>%
+    rename(Site = group) %>%
+    left_join(frag_area) %>%
+    select(Study, Site, Area, Scale, index, value)
+
+  div_out[[i]] <- out1
 }
-
-div_out <- bind_rows(div_out)
-div_out <- select(div_out, Study, Scale, Site = group, index, value)
-div_out$index <- ifelse(div_out$index == "S_asymp", "S_total", div_out$index)
-
 
 ##########################################
 # Clean, join files and save output      #
 # File 1: all studies, diversity indices #
-# File 2: sampling effort for Sn for both#
-#          scales                        #
 ##########################################
 
+div_out <- bind_rows(div_out)
+div_out$index <- ifelse(div_out$index == "S_asymp", "S_total", div_out$index)
 div_out <- filter(div_out, is.na(value) == FALSE) # remove NaN (where PIE could not be calculated)
-
-div_out$Scale = factor(div_out$Scale, levels = c("gamma","alpha","beta"))
-div_out$index = factor(div_out$index, levels=c("S_total","S_n","S_PIE","beta_S_n","beta_S_PIE"))
-
 div_out <- arrange(div_out, Study, Scale, index)
 
 #############################
