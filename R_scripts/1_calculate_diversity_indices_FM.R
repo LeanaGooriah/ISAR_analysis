@@ -153,18 +153,5 @@ div_out <- arrange(div_out, Study, Scale, index)
 #############################
 # write out clean data file #
 #############################
-write.csv(div_out, "ISAR_DATA/diversity_indices/allstudies_allscales_allindices.csv", row.names=FALSE)
+write.csv(div_out, "ISAR_DATA/diversity_indices/allstudies_allscales_allindices.csv", row.names = FALSE)
 
-# File 2: sampling effort calculation of effort for Sn at gamma and alpha scales
-# # 
-# 
-# alpha_effort<-summarise(group_by(alpha_n_out, Study), effort=unique(effort))
-# alpha_effort$Scale<-"alpha"
-# 
-# gamma_effort<-summarise(group_by(gamma_n_out, Study), effort=unique(effort))
-# gamma_effort$Scale<-"gamma"
-# 
-# effort<-rbind.data.frame(alpha_effort,gamma_effort)
-# effort<-arrange(effort, Study, Scale)
-# 
-# write.csv(effort, "ISAR_DATA/diversity_indices/allstudies_Sn_samplingeffort.csv",row.names=FALSE)
