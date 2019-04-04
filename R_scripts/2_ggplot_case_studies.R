@@ -4,10 +4,11 @@ require(dplyr)
 ################
 # make figures #
 ################
-allstudies_allscales_allindices <- read_csv("diversity_indices/allstudies_allscales_allindices.csv")
+allstudies_allscales_allindices <- read_csv("ISAR_DATA/diversity_indices/allstudies_allscales_allindices.csv")
 allstudies_allscales_allindices$Study<-as.factor(allstudies_allscales_allindices$Study)
-allstudies_allscales_allindices$Study = factor(allstudies_allscales_allindices$Study, levels=c("lizards_islands_SurendranVasudevan","grasshopper_glades_RybergChase",
-                                                                 "plants_habitat_fragments_Giladi_et_al"))
+allstudies_allscales_allindices$Study = factor(allstudies_allscales_allindices$Study, levels=c("lizards_islands_SurendranVasudevan",
+"grasshopper_glades_RybergChase","plants_habitat_fragments_Giladi_et_al"))
+
 ################
 # Gamma scale  #
 ################
