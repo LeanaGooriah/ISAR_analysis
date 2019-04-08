@@ -15,4 +15,4 @@ This work is licensed under a [Creative Commons Attribution 2.0 Generic License]
 
 All data used from this repository should be cited (see Bibliography [here](https://github.com/LeanaGooriah/ISAR_analysis/blob/master/Bibliography.rtf)).
 
-[![DOI](https://zenodo.org/badge/147322370.svg)](https://zenodo.org/badge/latestdoi/147322370)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2632940.svg)](https://doi.org/10.5281/zenodo.2632940)
