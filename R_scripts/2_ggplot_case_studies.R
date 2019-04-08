@@ -4,24 +4,21 @@ require(dplyr)
 ################
 # make figures #
 ################
-allstudies_allscales_allindices <- read_csv("ISAR_DATA/diversity_indices/allstudies_allscales_allindices.csv")
-allstudies_allscales_allindices$Study<-as.factor(allstudies_allscales_allindices$Study)
-allstudies_allscales_allindices$Study = factor(allstudies_allscales_allindices$Study, levels=c("lizards_islands_SurendranVasudevan",
-"grasshopper_glades_RybergChase","plants_habitat_fragments_Giladi_et_al"))
+allstudies_allscales_allindices <- read.csv("ISAR_DATA/diversity_indices/allstudies_allscales_allindices.csv")
 
 ################
 # Gamma scale  #
 ################
-gamma<-filter(allstudies_allscales_allindices, Scale=="gamma")
-gamma$index = factor(gamma$index, levels=c("S_total","S_n","S_PIE"))
+gamma <- filter(allstudies_allscales_allindices, Scale == "gamma")
+gamma$index <- factor(gamma$index, levels=c("S_total","S_n","S_PIE"))
 
-gamma_a<-filter(gamma, Study=="lizards_islands_SurendranVasudevan")
-gamma_b<-filter(gamma, Study=="grasshopper_glades_RybergChase")
-gamma_c<-filter(gamma, Study=="plants_habitat_fragments_Giladi_et_al")
+gamma_a <- filter(gamma, Study=="lizards_islands_SurendranVasudevan")
+gamma_b <- filter(gamma, Study=="grasshopper_glades_RybergChase")
+gamma_c <- filter(gamma, Study=="plants_habitat_fragments_Giladi_et_al")
 gamma_c$Area <- gamma_c$Area/100
 
 # Lizards
-gamma_A_f<-ggplot(data = gamma_a, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
+gamma_A_f <- ggplot(data = gamma_a, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
   geom_point(size=2)+
   stat_smooth(method="lm",se=TRUE)+
   
@@ -48,7 +45,7 @@ gamma_A_f<-ggplot(data = gamma_a, aes(x=Area, y=value, colour=index, fill=index,
                    plot.margin = unit(c(0.5,0,0,0), "cm"))
 
 # Grasshoppers
-gamma_B_f<-ggplot(data = gamma_b, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
+gamma_B_f <- ggplot(data = gamma_b, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
   geom_point(size=2)+
   stat_smooth(method="lm",se=TRUE)+
   
@@ -74,7 +71,7 @@ gamma_B_f<-ggplot(data = gamma_b, aes(x=Area, y=value, colour=index, fill=index,
                    legend.position="none")
 
 # Plants
-gamma_C_f<-ggplot(data = gamma_c, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
+gamma_C_f <- ggplot(data = gamma_c, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
   geom_point(size=2)+
   stat_smooth(method="lm",se=TRUE)+
   
@@ -102,16 +99,15 @@ gamma_C_f<-ggplot(data = gamma_c, aes(x=Area, y=value, colour=index, fill=index,
 # Alpha   #
 ###########
 
-alpha<-filter(allstudies_allscales_allindices, Scale=="alpha")
-alpha$index = factor(alpha$index, levels=c("S_n","S_PIE"))
+alpha <- filter(allstudies_allscales_allindices, Scale=="alpha")
 
-alpha_a<-filter(alpha, Study=="lizards_islands_SurendranVasudevan")
-alpha_b<-filter(alpha, Study=="grasshopper_glades_RybergChase")
-alpha_c<-filter(alpha, Study=="plants_habitat_fragments_Giladi_et_al")
+alpha_a <- filter(alpha, Study=="lizards_islands_SurendranVasudevan")
+alpha_b <- filter(alpha, Study=="grasshopper_glades_RybergChase")
+alpha_c <- filter(alpha, Study=="plants_habitat_fragments_Giladi_et_al")
 alpha_c$Area <- alpha_c$Area/100
 
 # Lizards
-alpha_A_f<-ggplot(data = alpha_a, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
+alpha_A_f <- ggplot(data = alpha_a, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
   geom_point(size=2)+
   stat_smooth(method="lm",se=TRUE)+
   
@@ -139,7 +135,7 @@ alpha_A_f<-ggplot(data = alpha_a, aes(x=Area, y=value, colour=index, fill=index,
                    plot.margin = unit(c(0.5,0,0,0), "cm"))
 
 # Grasshoppers
-alpha_B_f<-ggplot(data = alpha_b, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
+alpha_B_f <- ggplot(data = alpha_b, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
   geom_point(size=2)+
   stat_smooth(method="lm",se=TRUE)+
   
@@ -166,7 +162,7 @@ alpha_B_f<-ggplot(data = alpha_b, aes(x=Area, y=value, colour=index, fill=index,
                    legend.position="none")
 
 # Plants
-alpha_C_f<-ggplot(data = alpha_c, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
+alpha_C_f <- ggplot(data = alpha_c, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
   geom_point(size=2)+
   stat_smooth(method="lm",se=TRUE)+
   
@@ -196,16 +192,15 @@ alpha_C_f<-ggplot(data = alpha_c, aes(x=Area, y=value, colour=index, fill=index,
 # Beta ##
 #########
 
-beta<-filter(allstudies_allscales_allindices, Scale=="beta")
-beta$index = factor(beta$index, levels=c("beta_S_n","beta_S_PIE"))
+beta <- filter(allstudies_allscales_allindices, Scale=="beta")
 
-beta_a<-filter(beta, Study=="lizards_islands_SurendranVasudevan")
-beta_b<-filter(beta, Study=="grasshopper_glades_RybergChase")
-beta_c<-filter(beta, Study=="plants_habitat_fragments_Giladi_et_al")
+beta_a <- filter(beta, Study=="lizards_islands_SurendranVasudevan")
+beta_b <- filter(beta, Study=="grasshopper_glades_RybergChase")
+beta_c <- filter(beta, Study=="plants_habitat_fragments_Giladi_et_al")
 beta_c$Area <- beta_c$Area/100
 
 # Lizards
-beta_A_f<-ggplot(data = beta_a, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
+beta_A_f <- ggplot(data = beta_a, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
   geom_point(size=2)+
   stat_smooth(method="lm",se=TRUE)+
   
@@ -234,7 +229,7 @@ beta_A_f<-ggplot(data = beta_a, aes(x=Area, y=value, colour=index, fill=index,sh
                    plot.margin = unit(c(0.5,0,0,0), "cm"))
 
 # Grasshoppers
-beta_B_f<-ggplot(data = beta_b, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
+beta_B_f <- ggplot(data = beta_b, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
   geom_point(size=2)+
   stat_smooth(method="lm",se=TRUE)+
   
@@ -251,7 +246,7 @@ beta_B_f<-ggplot(data = beta_b, aes(x=Area, y=value, colour=index, fill=index,sh
   
   scale_x_continuous(trans = "log10",breaks = c(10, 100, 1000,10000))+  scale_y_continuous(trans = "log10",limits=c(0.95,30)) +
   
-  labs(x=expression(bold(paste("Area (km" ^2,")"))), y="Species Number") +
+  labs(x = expression(bold(paste("Area (km" ^2,")"))), y="Species Number") +
   theme_bw()+theme(aspect.ratio = 1,
                    axis.text.x=element_text(size=12),
                    axis.text.y=element_blank(),
@@ -261,7 +256,7 @@ beta_B_f<-ggplot(data = beta_b, aes(x=Area, y=value, colour=index, fill=index,sh
                    legend.position="none")
 
 # Plants
-beta_C_f<-ggplot(data = beta_c, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
+beta_C_f <- ggplot(data = beta_c, aes(x=Area, y=value, colour=index, fill=index,shape=index)) +
   geom_point(size=2)+
   stat_smooth(method="lm",se=TRUE)+
   
@@ -292,7 +287,7 @@ beta_C_f<-ggplot(data = beta_c, aes(x=Area, y=value, colour=index, fill=index,sh
 
 require(cowplot)
 
-isar_figure<-plot_grid(gamma_A_f,alpha_A_f,beta_A_f,
+isar_figure <- plot_grid(gamma_A_f,alpha_A_f,beta_A_f,
                     gamma_B_f,alpha_B_f,beta_B_f,
                     gamma_C_f,alpha_C_f,beta_C_f,
                     labels=c("a) Total","b) Local","c) Beta",
@@ -301,10 +296,10 @@ isar_figure<-plot_grid(gamma_A_f,alpha_A_f,beta_A_f,
                     label_size=11, label_fontface = "bold", 
                     hjust=-1.3, vjust=1, ncol=3, align="hv")
 
-ggsave(filename = "isar_figure_final.png", plot = isar_figure, 
+ggsave(filename = "FIGURE/isar_figure_final.png", plot = isar_figure, 
        device = "png",dpi=500, width = 25, height = 25, units = "cm")
 
-isar_figure
+
 
 
 
