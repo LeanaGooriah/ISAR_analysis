@@ -1,7 +1,7 @@
 # A framework for disentangling ecological mechanisms underlying the island species-area relationship (ISAR).
 
  ## Authors
- *Leana Gooriah*
+ *Chase, J.M., Gooriah, L., May, F., Ryberg, W.A., Schuler, M.S., Craven, D. and Knight, T.M., 2019. A framework for disentangling ecological mechanisms underlying the island species–area relationship. Frontiers of Biogeography, 11(1).*
  
  ## Description
  
